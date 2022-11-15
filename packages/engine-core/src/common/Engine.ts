@@ -1,4 +1,5 @@
 import type { DataSource, DMMF, EnvValue, GeneratorConfig } from '@prisma/generator-helper'
+import { EventEmitter } from 'events'
 
 import { TracingConfig } from '../tracing/getTracingConfig'
 import type { Metrics, MetricsOptionsJson, MetricsOptionsPrometheus } from './types/Metrics'
@@ -91,6 +92,7 @@ export interface EngineConfig {
   previewFeatures?: string[]
   engineEndpoint?: string
   activeProvider?: string
+  logEmitter: EventEmitter
 
   /**
    * The contents of the schema encoded into a string
