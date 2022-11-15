@@ -4,7 +4,7 @@ export default testMatrix.setupSchema(({ provider }) => {
   return /* Prisma */ `
       generator client {
         provider        = "prisma-client-js"
-        previewFeatures = ["relationMode"]
+        previewFeatures = ["referentialIntegrity"]
       }
 
       datasource db {

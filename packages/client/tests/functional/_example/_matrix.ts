@@ -38,7 +38,7 @@ export default defineMatrix(() => [
       previewFeatures: '"tracing"',
     },
     {
-      previewFeatures: '"relationMode"',
+      previewFeatures: '"referentialIntegrity"',
     },
   ],
 ])
@@ -63,13 +63,13 @@ export default defineMatrix(() => [
       'provider': 'sqlite',
       'id': 'Int @id @default(autoincrement())',
       'providerFeatures': '',
-      'previewFeatures': '"relationMode"',
+      'previewFeatures': '"referentialIntegrity"',
     },
     {
       'provider': 'mongodb',
       'id': 'String @id @default(auto()) @map("_id") @db.ObjectId',
       'providerFeatures': '"mongoDb", ',
-      'previewFeatures': '"relationMode"',
+      'previewFeatures': '"referentialIntegrity"',
     },
   ]
 */
