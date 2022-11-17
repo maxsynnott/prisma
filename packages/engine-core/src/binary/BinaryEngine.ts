@@ -6,7 +6,6 @@ import { getPlatform, platforms } from '@prisma/get-platform'
 import chalk from 'chalk'
 import type { ChildProcess, ChildProcessByStdio } from 'child_process'
 import { spawn } from 'child_process'
-import EventEmitter from 'events'
 import execa from 'execa'
 import fs from 'fs'
 import net from 'net'
@@ -23,6 +22,7 @@ import type {
   EngineEventType,
   GetConfigResult,
   InteractiveTransactionOptions,
+  LogEmitter,
 } from '../common/Engine'
 import { Engine } from '../common/Engine'
 import { PrismaClientInitializationError } from '../common/errors/PrismaClientInitializationError'
@@ -82,7 +82,7 @@ const MAX_STARTS = process.env.PRISMA_CLIENT_NO_RETRY ? 1 : 2
 const MAX_REQUEST_RETRIES = process.env.PRISMA_CLIENT_NO_RETRY ? 1 : 2
 
 export class BinaryEngine extends Engine {
-  private logEmitter: EventEmitter
+  private logEmitter: LogEmitter
   private showColors: boolean
   private logQueries: boolean
   private logLevel?: 'info' | 'warn'

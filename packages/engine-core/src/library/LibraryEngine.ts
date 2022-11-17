@@ -3,10 +3,15 @@ import { DMMF } from '@prisma/generator-helper'
 import type { Platform } from '@prisma/get-platform'
 import { getPlatform, isNodeAPISupported, platforms } from '@prisma/get-platform'
 import chalk from 'chalk'
-import EventEmitter from 'events'
 import fs from 'fs'
 
-import type { BatchTransactionOptions, DatasourceOverwrite, EngineConfig, EngineEventType } from '../common/Engine'
+import type {
+  BatchTransactionOptions,
+  DatasourceOverwrite,
+  EngineConfig,
+  EngineEventType,
+  LogEmitter,
+} from '../common/Engine'
 import { Engine } from '../common/Engine'
 import { PrismaClientInitializationError } from '../common/errors/PrismaClientInitializationError'
 import { PrismaClientKnownRequestError } from '../common/errors/PrismaClientKnownRequestError'
@@ -64,7 +69,7 @@ export class LibraryEngine extends Engine {
   private QueryEngineConstructor?: QueryEngineConstructor
   private libraryLoader: LibraryLoader
   private library?: Library
-  private logEmitter: EventEmitter
+  private logEmitter: LogEmitter
   libQueryEnginePath?: string
   platform?: Platform
   datasourceOverrides: Record<string, string>

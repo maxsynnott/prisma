@@ -1,5 +1,4 @@
 import type { DataSource, DMMF, EnvValue, GeneratorConfig } from '@prisma/generator-helper'
-import { EventEmitter } from 'events'
 
 import { TracingConfig } from '../tracing/getTracingConfig'
 import type { Metrics, MetricsOptionsJson, MetricsOptionsPrometheus } from './types/Metrics'
@@ -73,6 +72,12 @@ export interface DatasourceOverwrite {
   env?: string
 }
 
+// LogEmitter represents a platform-agnostic slice of NodeJS.EventEmitter,
+export interface LogEmitter {
+  on(event: string, listener: (...args: any[]) => void): unknown
+  emit(event: string, args?: any): boolean
+}
+
 export interface EngineConfig {
   cwd?: string
   dirname?: string
@@ -92,7 +97,7 @@ export interface EngineConfig {
   previewFeatures?: string[]
   engineEndpoint?: string
   activeProvider?: string
-  logEmitter: EventEmitter
+  logEmitter: LogEmitter
 
   /**
    * The contents of the schema encoded into a string
