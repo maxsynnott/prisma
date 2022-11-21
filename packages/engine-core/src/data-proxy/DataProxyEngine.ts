@@ -8,11 +8,11 @@ import type {
   GetConfigResult,
   InlineDatasource,
   InteractiveTransactionOptions,
-  LogEmitter,
 } from '../common/Engine'
 import { Engine } from '../common/Engine'
 import { PrismaClientUnknownRequestError } from '../common/errors/PrismaClientUnknownRequestError'
 import { prismaGraphQLToJSError } from '../common/errors/utils/prismaGraphQLToJSError'
+import { EventEmitter } from '../common/types/Events'
 import { EngineMetricsOptions, Metrics, MetricsOptionsJson, MetricsOptionsPrometheus } from '../common/types/Metrics'
 import { QueryEngineBatchRequest, QueryEngineRequestHeaders, QueryEngineResult } from '../common/types/QueryEngine'
 import type * as Tx from '../common/types/Transaction'
@@ -44,7 +44,7 @@ export class DataProxyEngine extends Engine {
   readonly inlineSchemaHash: string
   private inlineDatasources: Record<string, InlineDatasource>
   private config: EngineConfig
-  private logEmitter: LogEmitter
+  private logEmitter: EventEmitter
   private env: { [k in string]?: string }
 
   private clientVersion: string
